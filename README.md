@@ -1,16 +1,31 @@
-# portal_news_lagi
+# portal_berita_lokerprogrammer
+untuk tampilan dari icon filter, list resume, bookmark, dan profil masih icon dummy (blm sesuai desain)
 
-A new Flutter project.
+Tampilan Kategori
+<br>
+<img src="mock_up_apk/kat.png" width="350">
 
-## Getting Started
+Tampilan Home
+<br>
+<img src="mock_up_apk/home.png" width="350">
 
-This project is a starting point for a Flutter application.
+Tampilan Detail
+<br>
+<img src="mock_up_apk/detail.png" width="350">
 
-A few resources to get you started if this is your first Flutter project:
+Tampilan Profil (belum login)
+<br>
+<img src="mock_up_apk/profil_blm.png" width="350">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Tampilan Profil (sudah login)
+<br>
+<img src="mock_up_apk/profil_sdh.png" width="350">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Tampilan FormLogin
+<br>
+<img src="mock_up_apk/login.png" width="350">
+
+Tampilan FormRegist
+<br>
+<img src="mock_up_apk/regist.png" width="350">
+
