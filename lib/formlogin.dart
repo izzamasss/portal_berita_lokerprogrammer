@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'main.dart';
 import 'home.dart';
+import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,46 +15,46 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController userController = TextEditingController();
   TextEditingController passController = TextEditingController();
-  void initState() {
-    super.initState();
-    startLaunch();
-  }
-
-  Future<void> startLaunch() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var login = prefs.getInt('login');
-    if (login != null) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        return MyApp(initialPage: 2);
-      }));
-    }
-  }
 
   Future<List> getData() async {
     final response = await http.get(linkAPI + "login.php");
     return json.decode(response.body);
   }
 
-  Future<void> cekLogin(
-      List data, String userController, String passController) async {
+  Future<void> cekLogin(List data, TextEditingController userController,
+      TextEditingController passController) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int login = 0;
     for (var i = 0; i < data.length; i++) {
-      if (data[i]['username'] == userController &&
-          data[i]['password'] == passController) {
+      if (data[i]['username'] == userController.text &&
+          data[i]['password'] == passController.text) {
         login = 1;
       }
     }
     if (login == 1) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        prefs.setString('login', userController);
+        prefs.setString('login', userController.text);
         return MyApp(initialPage: 2);
       }));
     }
+    // tidak bisa login
+    else {
+      userController.text = '';
+      passController.text = '';
+      return FToast(context).showToast(
+        toastDuration: Duration(milliseconds: 2000),
+        child: Container(
+          margin: EdgeInsets.only(bottom: 20),
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25.0),
+            color: Colors.grey,
+          ),
+          child: Text('Username dan Password salah'),
+        ),
+      );
+    }
   }
-  // startLaunch(){....}
-  // getData(){....}
-  // cekLogin(){....}
 
   @override
   Widget build(BuildContext context) {
@@ -115,8 +116,8 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             onPressed: () {
-                              cekLogin(snapshot.data, userController.text,
-                                  passController.text);
+                              cekLogin(snapshot.data, userController,
+                                  passController);
                             },
                           ),
                         ],
