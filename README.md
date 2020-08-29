@@ -1,5 +1,5 @@
 # portal_berita_lokerprogrammer
-untuk tampilan dari icon filter, list resume, bookmark, dan profil masih icon dummy (blm sesuai desain)
+Project workshop pembuatan aplikasi portal berita menggunakan flutter. 
 
 Tampilan Kategori
 <br>
